@@ -11,6 +11,7 @@ A dynamic, real-time leaderboard application for tracking user doubloons. Built 
 - **Search Functionality**: Quick user lookup with instant results
 - **Responsive Design**: Fully responsive interface with mobile-first approach
 - **Podium Display**: Special highlighting for top 3 users
+- **Cache**: Cache with Edge Runtime
 
 ## Setup and Installation
 
