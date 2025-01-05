@@ -64,35 +64,28 @@ const DoubloonsLeaderboard = () => {
 
   const fetchAllUsersStats = async () => {
     try {
-      let allDoubloons = 0;
-      let userCount = 0;
+      const res = await fetch('/api/stats', {
+        cache: 'no-store'
+      });
       
-      for (let page = 1; page <= 21; page++) {
-        const res = await fetch('/api/data', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ page, sortBy: 'total' })
-        });
-        
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        
-        const data: ApiResponse = await res.json();
-        data.users.forEach(user => {
-          allDoubloons += user.total_doubloons;
-          userCount++;
-        });
-      }
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       
+      const data = await res.json();
       setAllUsersStats({
-        totalDoubloons: allDoubloons,
-        totalUsers: userCount,
+        totalDoubloons: data.totalDoubloons,
+        totalUsers: data.totalUsers,
         isLoading: false
       });
     } catch (err) {
-      console.error('Error fetching all users:', err);
+      console.error('Error fetching stats:', err);
       setAllUsersStats(prev => ({ ...prev, isLoading: false }));
     }
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(fetchAllUsersStats, 5 * 60 * 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   const sortAndRankUsers = (userList: User[]) => {
     return userList
