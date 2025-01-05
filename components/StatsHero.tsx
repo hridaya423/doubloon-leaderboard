@@ -35,7 +35,7 @@ const StatsHero = ({ stats }: StatsHeroProps) => {
                 isLoading={stats.isLoading}
               />
               <StatCard
-                title="Total Doubloons"
+                title="Total Doubloons Tracked"
                 value={Math.ceil(stats.totalDoubloons)}
                 isLoading={stats.isLoading}
               />
