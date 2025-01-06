@@ -8,7 +8,7 @@ async function fetchAllUsersStats() {
   let userCount = 0 
   
   for (let page = 1; page <= 21; page++) {
-    const res = await fetch(`https://doubloon-leaderboard.vercel.app/api/data`, {
+    const res = await fetch(`https://https://doubloonlb.vercel.app/api/data`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ page, sortBy: 'total' })
