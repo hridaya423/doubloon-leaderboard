@@ -7,8 +7,8 @@ async function fetchAllUsersStats() {
   let allDoubloons = 0
   let userCount = 0 
   
-  for (let page = 1; page <= 21; page++) {
-    const res = await fetch(`https://doubloons.cyteon.hackclub.app/api/v1/data`, {
+  for (let page = 1; page <= 45; page++) {
+    const res = await fetch(`https://doubloons-leaderboard.vercel.app/api/data`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ page, sortBy: 'total' })
